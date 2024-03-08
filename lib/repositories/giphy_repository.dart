@@ -1,14 +1,14 @@
 import 'dart:convert';
 
+import 'package:giphy/models/api_response.dart';
 import 'package:giphy/models/giphy.dart';
-import 'package:giphy/providers/states/giphy_response_state.dart';
 import 'package:giphy/services/api_services.dart';
 
 class GiphyRepository {
   GiphyRepository() : _apiService = ApiServices();
   final ApiServices _apiService;
 
-  Future<GiphyState> trendingGifs({
+  Future<ApiResponse> trendingGifs({
     required int limit,
     required int offset,
   }) async {
@@ -28,20 +28,20 @@ class GiphyRepository {
       final jsonData = json.decode(response.body);
 
       final data = jsonData['data'];
-      print(data);
+
       final List<Giphy> gifs = [];
 
       for (final gif in data) {
         gifs.add(Giphy.fromJson(json: gif));
       }
 
-      return GiphyState(
-        gifs: gifs,
-        error: null,
+      return ApiResponse(
+        success: true,
+        body: gifs,
       );
     } catch (error) {
-      return GiphyState(
-        gifs: [],
+      return ApiResponse(
+        success: false,
         error: error,
       );
     }
