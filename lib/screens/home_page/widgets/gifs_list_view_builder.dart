@@ -30,10 +30,6 @@ class _GifsListViewBuilderState extends ConsumerState<GifsListViewBuilder> {
         isLoading = true;
       });
       ref.read(giphyNotifier.notifier).getMoreGifs();
-    } else {
-      // setState(() {
-      //   isLoading = false;
-      // });
     }
   }
 
