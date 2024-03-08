@@ -8,9 +8,11 @@ class Giphy {
   });
 
   factory Giphy.fromJson({required Map<String, dynamic> json}) {
+    final gifUrl = json['images']['original']['url'];
+
     return Giphy(
       id: json['id'],
-      url: json['url'],
+      url: gifUrl,
     );
   }
 }
