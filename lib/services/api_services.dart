@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 class ApiServices {
   Future<http.Response> get({
     required String endPoint,
-    Map<String, String>? queryParams,
+    Map<String, dynamic>? queryParams,
   }) async {
     final headers = {
       'Content-Type': 'application/json',
